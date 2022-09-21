@@ -1,3 +1,54 @@
 body {
     text-align: center;
 }
+
+.touch-control {
+    position: absolute;
+    width: 505px;
+    height: 200px;
+    top: 630px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    background-color: yellow;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+
+.btn-up, .btn-down, .btn-left, .btn-right {
+    width: 90px;
+    height: 70px;
+}
+
+.btn-up {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+
+.btn-down {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.btn-left {
+    position: absolute;
+    left: 100px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.btn-right {
+    position: absolute;
+    right: 100px;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+}
