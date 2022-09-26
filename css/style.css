@@ -1,18 +1,24 @@
 body {
     text-align: center;
+    min-width: 510px;
 }
 
 .touch-control {
-    position: absolute;
-    width: 505px;
+    position: relative;
+    width: 501px;
     height: 200px;
-    top: 630px;
+    top: 700px;
     left: 0px;
     right: 0px;
     margin: auto;
     background-color: yellow;
     border-radius: 5px;
     border: 2px solid black;
+}
+
+canvas {
+    position: relative;
+    top: -150px;
 }
 
 .btn-up, .btn-down, .btn-left, .btn-right {
@@ -51,4 +57,12 @@ body {
     top: 0;
     bottom: 0;
     margin: auto;
+}
+
+img {
+    position: relative;
+    left: -100px;
+    top: -14px;
+    width: 50px;
+    z-index: 1;
 }

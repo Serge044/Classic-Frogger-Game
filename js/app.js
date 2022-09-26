@@ -9,9 +9,12 @@ const Enemy = function (x, y) {
   this.x = x;
   this.y = y;
   this.border = { left: -100, right: 505 };
-  this.speed = getRandomNum(200, 400);
-  this.sprite = "images/enemy-bug.png";
+  this.speed = getRandomNum(200, 300);
+  // this.sprite = "images/enemy-bug.png";
+  this.sprite = "images/tank-icon.png";
 };
+
+let counterOfLosesAndWins = 0;
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -23,7 +26,7 @@ Enemy.prototype.update = function (dt) {
   if (this.x < this.border.right) {
     this.x += dt * this.speed + Math.random();
   } else {
-    this.speed = getRandomNum(250, 400);
+    this.speed = getRandomNum(200, 300);
     // зʼявляються зліва на право
     this.x = this.border.left;
   }
@@ -49,7 +52,7 @@ const Player = function () {
   this.stepX = 101;
   this.stepY = 84;
   this.border = { top: -20, right: 404, bottom: 400, left: 0 };
-  this.sprite = "images/char-boy.png";
+  this.sprite = "images/char-nafo.png";
 };
 
 Player.prototype.render = function () {
@@ -57,7 +60,7 @@ Player.prototype.render = function () {
 };
 
 Player.prototype.toStartPosition = function (n) {
-  if (n == 0) {
+  if (n === 0) {
     this.x = 202;
     this.y = 400;
   } else {
@@ -65,12 +68,12 @@ Player.prototype.toStartPosition = function (n) {
     setTimeout(function () {
       self.x = 202;
       self.y = 400;
-      // console.log("U win!");
+      counterOfLosesAndWins += 1;
     }, n);
-    // console.log("U win!");
   }
-  // console.log("U win!");
 };
+
+console.log(counterOfLosesAndWins);
 
 Player.prototype.update = function () {
   if (this.y === this.border.top) {
@@ -85,8 +88,6 @@ Player.prototype.update = function () {
   this.checkEnemyCollision();
   // console.log("U win!");
 };
-
-let counterOfLosesAndWins = 0;
 
 Player.prototype.checkEnemyCollision = function () {
   allEnemies.forEach((element) => {
@@ -115,11 +116,11 @@ Player.prototype.handleInput = function (key) {
     this.x += this.stepX;
   }
   // CHECK IT
-  if (key === "up" && this.y == -20) {
-    counterOfLosesAndWins += 1;
-    console.log(counterOfLosesAndWins);
-    return;
-  }
+  // if (this.y == -20) {
+  //   counterOfLosesAndWins += 1;
+  //   console.log(counterOfLosesAndWins);
+  //   return;
+  // }
 };
 
 // Now instantiate your objects.
