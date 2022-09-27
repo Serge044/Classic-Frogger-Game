@@ -183,3 +183,52 @@ document.querySelector(".btn-right").onclick = function () {
     // console.log("right");
   }
 };
+
+// change bg color(BLACK & WHITE)
+
+const button2 = document.getElementById("round-btn-2");
+
+button2.addEventListener("click", () => {
+  document.body.style.backgroundColor = "#ffffff";
+});
+
+// change bg color(COLOR)
+
+const button = document.getElementById("round-btn-1");
+
+const hex = [
+  "0",
+  "1",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+];
+
+button.addEventListener("click", () => {
+  let hexColor = generateHex();
+  document.body.style.backgroundColor = hexColor;
+});
+
+function generateHex() {
+  let hexColor = "#";
+  for (let i = 0; i < 6; i++) {
+    hexColor += hex[getRandomNumber()];
+  }
+
+  return hexColor;
+}
+
+function getRandomNumber() {
+  return Math.floor(Math.random() * hex.length);
+}

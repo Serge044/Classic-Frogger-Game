@@ -5,31 +5,57 @@ body {
 
 .touch-control {
     position: relative;
-    width: 501px;
+    width: 503px;
     height: 200px;
-    top: 700px;
+    top: 600px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    background-color: yellow;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+/* .touch-control {
+    position: relative;
+    width: 521px;
+    height: 400px;
+    top: 200px;
     left: 0px;
     right: 0px;
     margin: auto;
     background-color: yellow;
     border-radius: 5px;
     border: 2px solid black;
+} */
+
+.shape {
+    position: absolute;
+    top: -550px;
+    left: -15px;
+    width: 530px;
+    height: 800px;
+    background-color: rgb(237, 207, 11);
+    z-index: -5;
+    border-radius: 10px;
+    border: 1px solid black;
 }
 
 canvas {
     position: relative;
-    top: -150px;
+    top: -250px;
 }
 
 .btn-up, .btn-down, .btn-left, .btn-right {
-    width: 90px;
+    width: 70px;
     height: 70px;
+    cursor: pointer;
 }
 
 .btn-up {
     position: absolute;
     top: 20px;
-    left: 0;
+    left: 240px;
     right: 0;
     margin: auto;
 }
@@ -38,14 +64,14 @@ canvas {
 .btn-down {
     position: absolute;
     bottom: 20px;
-    left: 0;
+    left: 240px;
     right: 0;
     margin: auto;
 }
 
 .btn-left {
     position: absolute;
-    left: 100px;
+    left: 260px;
     top: 0;
     bottom: 0;
     margin: auto;
@@ -53,16 +79,50 @@ canvas {
 
 .btn-right {
     position: absolute;
-    right: 100px;
+    right: 20px;
     top: 0;
     bottom: 0;
     margin: auto;
 }
 
+.round-btn-1, .round-btn-2 {
+    cursor: pointer;
+}
+
+.round-btn-1 {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    left: 20px;
+    bottom: 60px;
+}
+
+.round-btn-2 {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    left: 90px;
+    bottom: 90px;
+}
+
+.btn {
+    background-color: transparent;
+    padding: 8px;
+    border: 2px solid #222;
+    border-radius: 5px;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+    color: #222;
+    outline: none;
+    cursor: pointer;
+  }
+
 img {
     position: relative;
     left: -100px;
-    top: -14px;
+    top: -114px;
     width: 50px;
     z-index: 1;
 }
