@@ -184,15 +184,7 @@ document.querySelector(".btn-right").onclick = function () {
   }
 };
 
-// change bg color(BLACK & WHITE)
-
-const button2 = document.getElementById("round-btn-2");
-
-button2.addEventListener("click", () => {
-  document.body.style.backgroundColor = "#ffffff";
-});
-
-// change bg color(COLOR)
+// change bg color(hex COLOR)
 
 const button = document.getElementById("round-btn-1");
 
@@ -232,3 +224,13 @@ function generateHex() {
 function getRandomNumber() {
   return Math.floor(Math.random() * hex.length);
 }
+
+// change bg color(BLACK & WHITE)
+
+document.getElementById("round-btn-2").onclick = function () {
+  const blackWhiteBG = document.getElementById("body").style;
+
+  blackWhiteBG.getPropertyValue("background-color") === "black"
+    ? blackWhiteBG.setProperty("background-color", "white")
+    : blackWhiteBG.setProperty("background-color", "black");
+};
