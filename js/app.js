@@ -14,8 +14,6 @@ const Enemy = function (x, y) {
   this.sprite = "images/tank-icon.png";
 };
 
-let counterOfLosesAndWins = 0;
-
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function (dt) {
@@ -68,25 +66,38 @@ Player.prototype.toStartPosition = function (n) {
     setTimeout(function () {
       self.x = 202;
       self.y = 400;
-      counterOfLosesAndWins += 1;
     }, n);
   }
 };
 
-console.log(counterOfLosesAndWins);
+// Player.prototype.update = function () {
+//   if (this.y === this.border.top) {
+//     swal({
+//       title: "Congratulations!",
+//       text: "Crimea finally under the Ukrainian flag 🇺🇦",
+//       button: "cool",
+//     }).then(() => {
+//       this.toStartPosition();
+//     });
+//   }
+//   this.checkEnemyCollision();
+// };
 
 Player.prototype.update = function () {
   if (this.y === this.border.top) {
-    // return;
-    // counter of win, undestand how to add only 1!
-    // counterOfWins += 1;
-    // console.log(counterOfWins);
-    this.toStartPosition(250);
-    // console.log(counterOfWins);
+    setTimeout(() => {
+      swal(
+        "Congratulations!",
+        "Crimea finally under the Ukrainian flag 🇺🇦",
+        "success",
+        {
+          button: "Слава Україні!",
+        }
+      );
+      this.toStartPosition();
+    }, 100);
   }
-  // understand about the number(1 or another ??)
   this.checkEnemyCollision();
-  // console.log("U win!");
 };
 
 Player.prototype.checkEnemyCollision = function () {
@@ -97,8 +108,6 @@ Player.prototype.checkEnemyCollision = function () {
       this.x + this.width >= element.x
     ) {
       this.toStartPosition();
-      counterOfLosesAndWins -= 1;
-      console.log(counterOfLosesAndWins);
     }
   });
 };
@@ -115,12 +124,6 @@ Player.prototype.handleInput = function (key) {
   } else if (key === "right" && this.x !== this.border.right) {
     this.x += this.stepX;
   }
-  // CHECK IT
-  // if (this.y == -20) {
-  //   counterOfLosesAndWins += 1;
-  //   console.log(counterOfLosesAndWins);
-  //   return;
-  // }
 };
 
 // Now instantiate your objects.
@@ -156,10 +159,6 @@ document.querySelector(".btn-up").onclick = function () {
   if (player.y !== player.border.top) {
     player = player.y -= player.stepY;
     // console.log("up");
-    //CHECK IT
-  } else if (player.y >= player.border.top) {
-    counterOfLosesAndWins += 1;
-    console.log(counterOfLosesAndWins);
   }
 };
 
