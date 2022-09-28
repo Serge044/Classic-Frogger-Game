@@ -25,7 +25,7 @@ Enemy.prototype.update = function (dt) {
     this.x += dt * this.speed + Math.random();
   } else {
     this.speed = getRandomNum(200, 300);
-    // зʼявляються зліва на право
+    // from left to right
     this.x = this.border.left;
   }
 };
@@ -57,31 +57,10 @@ Player.prototype.render = function () {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Player.prototype.toStartPosition = function (n) {
-  if (n === 0) {
-    this.x = 202;
-    this.y = 400;
-  } else {
-    let self = this;
-    setTimeout(function () {
-      self.x = 202;
-      self.y = 400;
-    }, n);
-  }
+Player.prototype.toStartPosition = function () {
+  this.x = 202;
+  this.y = 400;
 };
-
-// Player.prototype.update = function () {
-//   if (this.y === this.border.top) {
-//     swal({
-//       title: "Congratulations!",
-//       text: "Crimea finally under the Ukrainian flag 🇺🇦",
-//       button: "cool",
-//     }).then(() => {
-//       this.toStartPosition();
-//     });
-//   }
-//   this.checkEnemyCollision();
-// };
 
 Player.prototype.update = function () {
   if (this.y === this.border.top) {
@@ -101,11 +80,11 @@ Player.prototype.update = function () {
 };
 
 Player.prototype.checkEnemyCollision = function () {
-  allEnemies.forEach((element) => {
+  allEnemies.forEach((el) => {
     if (
-      element.y == this.y &&
-      this.x <= element.x + element.width &&
-      this.x + this.width >= element.x
+      el.y == this.y &&
+      this.x <= el.x + el.width &&
+      this.x + this.width >= el.x
     ) {
       this.toStartPosition();
     }
@@ -114,23 +93,18 @@ Player.prototype.checkEnemyCollision = function () {
 
 // ----------buttons-control---------
 
-Player.prototype.handleInput = function (key) {
-  if (key === "up" && this.y !== this.border.top) {
+Player.prototype.handleInput = function (event) {
+  if (event === "ArrowUp" && this.y !== this.border.top) {
     this.y -= this.stepY;
-  } else if (key === "down" && this.y !== this.border.bottom) {
+  } else if (event === "ArrowDown" && this.y !== this.border.bottom) {
     this.y += this.stepY;
-  } else if (key === "left" && this.x !== this.border.left) {
+  } else if (event === "ArrowLeft" && this.x !== this.border.left) {
     this.x -= this.stepX;
-  } else if (key === "right" && this.x !== this.border.right) {
+  } else if (event === "ArrowRight" && this.x !== this.border.right) {
     this.x += this.stepX;
   }
 };
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
-
-// 505, 606
 const player = new Player();
 
 const enemy0 = new Enemy(-101, 64);
@@ -139,49 +113,18 @@ const enemy2 = new Enemy(-101, 232);
 
 const allEnemies = [enemy0, enemy1, enemy2];
 
-// This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
-// спрацювання на віджатті клавіші, щоб уникнути затискання і швидкого руху(чітерства)
-document.addEventListener("keyup", function (e) {
-  const allowedKeys = {
-    37: "left",
-    38: "up",
-    39: "right",
-    40: "down",
-  };
-
-  player.handleInput(allowedKeys[e.keyCode]);
+document.addEventListener("keyup", function (event) {
+  player.handleInput(event.code);
 });
 
 // ----------touch-control---------
 
-document.querySelector(".btn-up").onclick = function () {
-  if (player.y !== player.border.top) {
-    player = player.y -= player.stepY;
-    // console.log("up");
-  }
+const controls = document.querySelector(".touch-control");
+const movingPlayer = (e) => {
+  let event = e.target.id;
+  player.handleInput(event);
 };
-
-document.querySelector(".btn-down").onclick = function () {
-  if (player.y !== player.border.bottom) {
-    player = player.y += player.stepY;
-    // console.log("down");
-  }
-};
-
-document.querySelector(".btn-left").onclick = function () {
-  if (player.x !== player.border.left) {
-    player = player.x -= player.stepX;
-    // console.log("left");
-  }
-};
-
-document.querySelector(".btn-right").onclick = function () {
-  if (player.x !== player.border.right) {
-    player = player.x += player.stepX;
-    // console.log("right");
-  }
-};
+controls.addEventListener("click", movingPlayer);
 
 // change bg color(hex COLOR)
 
