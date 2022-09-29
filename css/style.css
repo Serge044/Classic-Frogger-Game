@@ -1,6 +1,7 @@
 body {
     text-align: center;
-    min-width: 510px;
+    /* min-width: 510px; */
+    max-height: 100%;
 }
 
 .touch-control {
